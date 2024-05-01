@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 
-
 const NamesMessagesTable = ({ apiEndpoint }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]); // For storing filtered results
