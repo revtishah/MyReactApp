@@ -16,11 +16,9 @@ jobs:
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
           submodules: true
           lfs: false
-          node-version: '22.0' 
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -34,6 +32,18 @@ jobs:
           api_location: "api" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.0'  # Specify Node.js 20
+      - name: Install dependencies
+        run: npm install
+      - name: Build and test
+        run: npm run build && npm test
+      - name: Remove Extra Git Config
+        run: git config --unset http.extraheader
+
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
