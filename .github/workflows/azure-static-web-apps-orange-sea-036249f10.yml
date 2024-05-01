@@ -35,13 +35,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.0'  # Specify Node.js 20
+          node-version: '18.x'  # Specify Node.js 20
       - name: Install dependencies
         run: npm install
       - name: Build and test
         run: npm run build && npm test
       - name: Remove Extra Git Config
-        run: git config --unset http.extraheader
+        run: |
+          git config --get http.extraheader && git config --unset http.extraheader || echo "No extraheader set"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
