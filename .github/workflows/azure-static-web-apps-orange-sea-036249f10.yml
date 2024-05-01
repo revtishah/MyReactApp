@@ -43,7 +43,6 @@ jobs:
       - name: Remove Extra Git Config
         run: git config --unset http.extraheader
 
-
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
