@@ -9,7 +9,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]); // For storing filtered results
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = 10; //Warning Message
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -50,18 +50,18 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
         // Set the mounted ref to true after the initial call
         mounted.current = true;
     }
-  }, [apiEndpoint, currentPage, pageSize]);
+  }, [apiEndpoint, currentPage, pageSize, isGlobalSearchActive]);
 
-  const debounce = (func, delay) => {
+  /*const debounce = (func, delay) => {
     let inDebounce;
     return function(...args) {
       clearTimeout(inDebounce);
       inDebounce = setTimeout(() => func.apply(this, args), delay);
     };
-  };
+  };*/
   
   //Global Search
-  const handleGlobalSearch = async (searchTerm, page = currentPage) => {
+  /*const handleGlobalSearch = async (searchTerm, page = currentPage) => {
     setIsGlobalSearchActive(true); // Set global search to active
     setLoading(true);
     try {
@@ -80,12 +80,41 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
       setError(error.message);
     }
     //setIsGlobalSearchActive(false); // Set global search to inactive
-  };
+  };*/
 
-  const debouncedGlobalSearch = useCallback(debounce((value) => {
+   // `handleGlobalSearch` function wrapped in its own useCallback
+   const handleGlobalSearch = useCallback(async (searchTerm, page = currentPage) => {
+    setIsGlobalSearchActive(true);
+    setLoading(true);
+    try {
+      const response = await fetch(`${apiEndpoint}/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await response.json();
+      setData(result.data);
+      setFilteredData(result.data);
+      setTotalCount(result.totalCount);
+      setCurrentPage(page);
+    } catch (error) {
+      setError(error.message);
+    }
+    setLoading(false);
+  }, [apiEndpoint, currentPage, pageSize]); 
+
+  /*const debouncedGlobalSearch = useCallback(debounce((value) => {
     //debugger;
     handleGlobalSearch(value);
-  }, 500), []); // Adjust the delay as needed
+  }, 500), [handleGlobalSearch,pageSize]); // Adjust the delay as needed*/
+
+  // Use useCallback directly with debounce logic
+  const debouncedGlobalSearch = useCallback((value) => {
+    let handler;
+    clearTimeout(handler);
+    handler = setTimeout(() => {
+      handleGlobalSearch(value);
+    }, 500);
+  }, [handleGlobalSearch]); // Remove pageSize from dependencies
 
 //Local Search Functionality
 const handleSearchChange = (e) => {
