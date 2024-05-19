@@ -7,7 +7,7 @@ import NamesMessagesTable from './NamesMessagesTable';
 import { Link } from 'react-router-dom';
 
 function App() {
-  const apiEndpoint = 'https://demoappexpress.azurewebsites.net';
+  const apiEndpoint = 'https://demoappexpress.azurewebsites.net/';
   return (
     <div className="App">
       <Router>
