@@ -12,7 +12,7 @@ function MessageFinder() {
     // Prevent the default form submit action if findMessage is used as onSubmit
     // e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/get-message/${name}`);
+      const response = await fetch(`https://demoappexpress.azurewebsites.net/get-message/${name}`);
       if (!response.ok) {
         throw new Error('Message not found');
       }
