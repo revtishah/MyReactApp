@@ -5,6 +5,10 @@
         "rewrite": "/index.html"
       }
     ],
+    "navigationFallback": {
+      "rewrite": "/index.html",
+      "exclude": ["/static/*"]
+    },
     "mimeTypes": {
       ".json": "application/json",
       ".png": "image/png",
