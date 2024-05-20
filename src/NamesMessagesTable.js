@@ -24,6 +24,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
         if (!isGlobalSearchActive) { // Only fetch data if a global search is not active
             setLoading(true);
             try {
+            console.log(`Fetching data: ${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
             const response = await fetch(`${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -87,6 +88,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
     setIsGlobalSearchActive(true);
     setLoading(true);
     try {
+      console.log(`Global search: ${apiEndpoint}/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
       const response = await fetch(`${apiEndpoint}/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
