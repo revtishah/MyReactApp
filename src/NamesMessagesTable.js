@@ -18,7 +18,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
   const [isGlobalSearchActive, setIsGlobalSearchActive] = useState(false);
 
   const mounted = useRef(false);
-
+  debugger;
   useEffect(() => {
     const fetchData = async () => {
         if (!isGlobalSearchActive) { // Only fetch data if a global search is not active
