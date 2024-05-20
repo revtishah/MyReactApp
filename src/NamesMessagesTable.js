@@ -24,7 +24,8 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
         if (!isGlobalSearchActive) { // Only fetch data if a global search is not active
             setLoading(true);
             try {
-            const response = await fetch(`${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+            // const response = await fetch(`${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+            const response = await fetch(`https://demoappexpress.azurewebsites.net/get-messages?page=${currentPage}&pageSize=${pageSize}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
