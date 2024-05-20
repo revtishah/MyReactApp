@@ -20,22 +20,22 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
   const mounted = useRef(false);
 
   useEffect(() => {
-    debugger;
     const fetchData = async () => {
         if (!isGlobalSearchActive) { // Only fetch data if a global search is not active
             setLoading(true);
             try {
-            console.log(`Fetching data: ${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
-            const response = await fetch(`https://demoappexpress.azurewebsites.net/get-messages?page=${currentPage}&pageSize=${pageSize}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const result = await response.json();
-            setData(result.data);
-            setFilteredData(result.data); // Initially, filtered data is all data
-            setTotalCount(result.totalCount);
-            console.log("Data" ,result.data);
-            setLoading(false);
+              debugger;
+              console.log(`Fetching data: ${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+              const response = await fetch(`https://demoappexpress.azurewebsites.net/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              const result = await response.json();
+              setData(result.data);
+              setFilteredData(result.data); // Initially, filtered data is all data
+              setTotalCount(result.totalCount);
+              console.log("Data" ,result.data);
+              setLoading(false);
             } catch (error) {
                 setLoading(false);
                 setError(error.message);
