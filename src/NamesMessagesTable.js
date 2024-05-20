@@ -26,7 +26,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
             setLoading(true);
             try {
             console.log(`Fetching data: ${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
-            const response = await fetch(`${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+            const response = await fetch(`https://demoappexpress.azurewebsites.net/get-messages?page=${currentPage}&pageSize=${pageSize}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -90,7 +90,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
     setLoading(true);
     try {
       console.log(`Global search: ${apiEndpoint}/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
-      const response = await fetch(`${apiEndpoint}/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
+      const response = await fetch(`https://demoappexpress.azurewebsites.net/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
