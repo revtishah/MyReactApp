@@ -16,7 +16,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
   const [searchTerm, setSearchTerm] = useState(""); // State to track search input
   const [isGlobalSearch, setIsGlobalSearch] = useState(false);
   const [isGlobalSearchActive, setIsGlobalSearchActive] = useState(false);
-  console.log("I am working outside of useEffect");
+  console.log("I am working outside of useEffect"); 
   const mounted = useRef(false);
   debugger;
   useEffect(() => {
