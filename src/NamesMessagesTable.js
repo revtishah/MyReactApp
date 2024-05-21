@@ -16,7 +16,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
   const [searchTerm, setSearchTerm] = useState(""); // State to track search input
   const [isGlobalSearch, setIsGlobalSearch] = useState(false);
   const [isGlobalSearchActive, setIsGlobalSearchActive] = useState(false);
-
+  console.log("I am working outside of useEffect");
   const mounted = useRef(false);
   debugger;
   useEffect(() => {
@@ -25,7 +25,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
             setLoading(true);
             try {
               debugger;
-              console.log(`Fetching data: ${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+              console.log(`Fetching data: ${apiEndpoint}get-messages?page=${currentPage}&pageSize=${pageSize}`);
               const response = await fetch(`https://demoappexpress.azurewebsites.net/get-messages?page=${currentPage}&pageSize=${pageSize}`);
               if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -89,7 +89,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
     setIsGlobalSearchActive(true);
     setLoading(true);
     try {
-      console.log(`Global search: ${apiEndpoint}/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
+      console.log(`Global search: ${apiEndpoint}global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
       const response = await fetch(`https://demoappexpress.azurewebsites.net/global-search?searchTerm=${encodeURIComponent(searchTerm)}&page=${page}&pageSize=${pageSize}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
