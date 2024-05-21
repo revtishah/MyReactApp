@@ -17,6 +17,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Remove extraheader
+        run: git config --global --unset-all http.https://github.com/.extraheader
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
