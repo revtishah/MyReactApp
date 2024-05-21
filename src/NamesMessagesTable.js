@@ -18,13 +18,12 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
   const [isGlobalSearchActive, setIsGlobalSearchActive] = useState(false);
   console.log("I am working outside of useEffect"); 
   const mounted = useRef(false);
-  debugger;
   useEffect(() => {
+    console.log("I am working inside of useEffect"); 
     const fetchData = async () => {
         if (!isGlobalSearchActive) { // Only fetch data if a global search is not active
             setLoading(true);
             try {
-              debugger;
               console.log(`Fetching data: ${apiEndpoint}get-messages?page=${currentPage}&pageSize=${pageSize}`);
               const response = await fetch(`${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
               if (!response.ok) {
