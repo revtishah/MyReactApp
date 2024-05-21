@@ -26,7 +26,7 @@ const NamesMessagesTable = ({ apiEndpoint }) => {
             try {
               debugger;
               console.log(`Fetching data: ${apiEndpoint}get-messages?page=${currentPage}&pageSize=${pageSize}`);
-              const response = await fetch(`https://demoappexpress.azurewebsites.net/get-messages?page=${currentPage}&pageSize=${pageSize}`);
+              const response = await fetch(`${apiEndpoint}/get-messages?page=${currentPage}&pageSize=${pageSize}`);
               if (!response.ok) {
                   throw new Error('Network response was not ok');
               }
